@@ -1,0 +1,44 @@
+//linked lsit implementation in c//
+#include<stdio.h>
+#include<stdlib.h>
+struct Node{
+	int data;
+	struct Node* link;
+};
+struct Node* head;
+void Insert(int x)
+{
+	int Null;
+	struct Node* temp = (struct Node*)malloc(sizeof(struct Node));
+	temp ->data=x;
+	temp ->link=Null;
+	if(head!=Null) temp->link=head;
+	head=temp;
+}
+void print()
+{
+	int Null;
+	struct Node* temp = head;
+	printf("list is :");
+	while(temp!=Null)
+	{
+		printf("%d",temp ->data);
+		temp = temp ->link;
+	}
+	printf("\n");
+}
+int main()
+{
+	int Null;
+	head=Null;
+	printf("How many numbers?\n");
+	int n,i,x;
+	scanf("%d",&n);
+	for(i=0; i<n; i++)
+	{
+		printf("Enter the numbers\n");
+		scanf("%d",&x);
+		Insert(x);
+		print();
+	}
+}
