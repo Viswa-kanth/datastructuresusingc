@@ -1,0 +1,60 @@
+//revesing linked list using recursion//
+#include<stdio.h>
+#include<stdlib.h>
+struct Node{
+	int data;
+	struct Node* next;
+};
+void Reverse(struct Node* p)
+{
+	int Null,head;
+	if(p->next == Null)
+	{
+		head=p;
+		return;
+	}
+	Reverse(p->next);
+	struct Node* q=p->next;
+	q->next=p;
+	p->next=Null;
+}
+struct Node* Insert(struct Node* head,int data){
+	int Null;
+	struct Node* temp=(struct Node*)malloc(sizeof(struct Node));
+	temp->data=data;
+	temp->next=Null;
+	if(head==Null) head=temp;
+	else{
+		struct Node* temp1=head;
+		while(temp1->next!=Null)
+		{
+			temp1=temp1->next;
+		}
+		temp->next=temp1->next;
+		temp1->next=temp;
+		
+	}
+	return head;
+}
+void print()
+{
+	int head;
+	struct Node* temp=head;
+	while(temp!=Null)
+	{
+		printf("%d",temp->data);
+		temp=temp->next;
+	}
+	printf("\n");
+}
+int main()
+{
+	int Null;
+	struct Node* head=Null;
+	struct Node* p=Null;
+	head=Insert(head,2);
+	head=Insert(head,4);
+	head=Insert(head,6);
+	head=Insert(head,5);
+	print(head);
+}
