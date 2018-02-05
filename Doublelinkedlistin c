@@ -1,0 +1,89 @@
+/*Double linked list implementation*/
+#include<stdio.h>
+#include<stdlib.h>
+struct Node{
+	int data;
+	struct Node* next;
+	struct Node* prev;
+};
+struct Node* head; //global variable-pointer to head node//
+//creates a new node and returns pointer to it//
+struct Node* GetNewNode(int x)
+{
+	int Null;
+	struct Node* newNode=(struct Node*)malloc(sizeof(struct Node));
+	newNode->data=x;
+	newNode->prev=Null;
+	newNode->next=Null;
+	return newNode;
+}
+//Insert a node at head of doubly linked list//
+void InsertAtHead(int x)
+{
+	int Null;
+	struct Node* newNode=GetNewNode(x);
+	if(head==Null)
+	{
+		head=newNode;
+		return;
+	}
+	head->prev=newNode;
+	newNode->next=head;
+	head=newNode;
+}
+//Insert a node at tail of doubly linked list//
+void InsertAtTail(int x)
+{
+	int Null;
+	struct Node* temp=head;
+	struct Node* newNode=GetNewNode(x);
+	if(head==Null)
+	{
+		head=newNode;
+		return;
+	}
+	while(temp->next!=Null) temp=temp->next;
+	temp->next=newNode;
+	newNode->prev=temp;
+}
+//print all elements in linked list in forward traversal order//
+void print()
+{
+	struct Node* temp=head;
+	printf("forward: ");
+	while(temp!=Null)
+	{
+		printf("%d",temp->data);
+		temp=temp->next;
+	}
+	printf("\n";)
+}
+//print all elements in linked list in reversal traversal order//
+void ReversePrint()
+{
+	int Null;
+	struct Node* temp=head;
+	if(temp==Null) return;//empty list
+	while(temp->next!=Null)
+	{
+		temp=temp->next;
+	}
+	//Traversing backward using prev pointer//
+	printf("Reverse: ");
+	while(temp!=Null)
+	{
+		printf("%d",temp->data);
+		temp=temp->prev;
+	}
+	printf("\n");
+}
+int main()
+{
+	head=Null;
+	//calling an Insert and printing list both in forward as well as reverse direction//
+	InsertAtTail(2); print(); Reverseprint();
+	InsertAtTail(4); print(); Reverseprint();
+	InsertAtTail(6); print(); Reverseprint();
+	InsertAtTail(8); print(); Reverseprint();
+	
+}
