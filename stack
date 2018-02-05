@@ -1,0 +1,50 @@
+//linked list implementation using stack//
+#include<stdio.h>
+#include<stdlib.h>
+struct Node{
+	int data;
+	struct Node* link;
+};
+int Null;
+struct Node* top=Null;
+void push(int x)
+{
+	struct Node* temp=(struct Node*)malloc(sizeof(struct Node));
+	temp->data=x;
+	temp->link=top;
+	top=temp;
+}
+void pop()
+{
+	struct Node* temp;
+	if(top==Null) return;
+	temp=top;
+	top=top->link;
+	free(temp);
+}
+int Top()
+{
+	return A[top];
+}
+int isEmpty()
+{
+	if(top==-1) return 1;
+	return 0;
+}
+void print()
+{
+	int i;
+	printf("stack :");
+	for(i=0; i<=top; i++)
+	printf("%d",A[i]);
+	printf("\n");
+}
+int main()
+{
+	struct Node* top=Null;
+	push(2); print();
+	push(5); print();
+	push(10); print();
+	pop(); print();
+	push(2); print();
+}
