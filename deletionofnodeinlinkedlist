@@ -1,0 +1,71 @@
+//Delete a node at nth position//
+#include<stdio.h>
+#include<stdlib.h>
+struct Node{
+	int data;
+	struct Node* next;
+};
+struct Node* head;
+void Insert(int data)
+{
+	int Node;
+	int i,n;
+	int Null;
+	struct Node* temp1 = (struct Node*)malloc(sizeof(Node));
+	temp1 ->data=data;
+	temp1 ->next=Null;
+	if(n ==1){
+		temp1 ->next=head;
+		head = temp1;
+		return;
+	}
+	struct Node *temp2=head;
+	for(i=0; i<n-2; i++)
+	{
+		temp2=temp2 ->next;
+		}
+		temp1 ->next=temp2 ->next;
+		temp2 ->next=temp1; 
+}
+void print()
+{
+	int Null;
+	struct Node* temp=head;
+	while(temp != Null)
+	{
+		printf("%d",temp ->data);
+		temp=temp ->next;
+	}
+	printf("\n");
+}
+void Delete(int n)
+{
+	struct Node* temp1=head;
+	if(n==1)
+	{
+		head=temp1 ->next;
+		free(temp1);
+		return;
+	}
+	int i;
+	for(i=0; i<n-2; i++)
+	temp1=temp1 ->next;
+	struct Node* temp2 = temp1 ->next;
+	temp1 ->next=temp2 ->next;
+	free(temp2);
+}
+int main()
+{
+	int Null;
+	head=Null;
+	Insert(2);
+	Insert(4);
+	Insert(6);
+	Insert(5);
+	print();
+	int n;
+	printf("Enter a position\n");
+	scanf("%d",&n);
+	Delete(n);
+	print();
+}
